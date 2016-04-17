@@ -1,0 +1,69 @@
+.voting{
+  display: flex;
+  position: fixed;
+  top : 10%;
+  left : 0;
+  right : 0;
+  bottom : 0;
+  flex-direction: column;
+}
+
+@media only screen and (min-device-width: 500px){
+ .voting {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+  }
+}
+
+.voting div:first-child{
+  border-right : 1px solid white;
+}
+
+
+.voting div{
+  flex : 1 0 0;
+  cursor: pointer;
+}
+
+.voting img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25%;
+}
+
+h1{
+  text-align : center;
+  margin: auto;
+}
+
+a{
+  color : red;
+}
+
+body {
+	background-color: #673AB7;
+	color: white;
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-ms-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	font-smoothing: antialiased;
+  font-family: Verdana, sans-serif;
+}
+
+table{
+  margin: auto;
+  margin-top: 2%;
+  border-collapse: collapse;
+}
+
+table th,td{
+  padding : 2px 5px;
+  vertical-align:  middle;
+  border: 1px solid;
+  text-align: center;
+}
