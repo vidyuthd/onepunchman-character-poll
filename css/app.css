@@ -6,7 +6,10 @@
   right : 0;
   bottom : 0;
   flex-direction: column;
+<<<<<<< HEAD
   overflow: auto;
+=======
+>>>>>>> 76dc6060301bd5c696c03a6dd8ae52795aa7f6a3
 }
 
 @media only screen and (min-device-width: 500px){
