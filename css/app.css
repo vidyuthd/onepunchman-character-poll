@@ -17,10 +17,10 @@
     -ms-flex-direction: row;
     flex-direction: row;
   }
-}
 
-.voting div:first-child{
-  border-right : 1px solid white;
+  .voting div:first-child{
+    border-right : 1px solid white;
+  }
 }
 
 
