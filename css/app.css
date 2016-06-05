@@ -45,7 +45,7 @@ a{
 }
 
 body {
-	background-color: #673AB7;
+	background: #673AB7;
 	color: white;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
@@ -66,4 +66,8 @@ table th,td{
   vertical-align:  middle;
   border: 1px solid;
   text-align: center;
+}
+
+#card{
+  background: #673AB7;
 }

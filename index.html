@@ -1,13 +1,85 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title> One Punch Man Character Popularity </title>
+    <title> One Punch Man Character Poll </title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width initial-scale=1.0"/>
     <link href="css/app.css" rel="stylesheet"/>
+    <script src="scripts/oauth.js"> </script>
   </head>
   <body>
+    <div style="margin-bottom: 20px;" id="target"></div>
     <section id="app"> </section>
     <script src="js/bundle.js"> </script>
   </body>
+  <script src="scripts/html2canvas.js"> </script>
+  <script>
+  OAuth.initialize('C9tTpiq3EixlAOWgmjysBd1C-wE');
+function triggerDownload(anchorref){
+  function convertToCanvas(){
+    html2canvas(document.getElementById("card"), {
+        onrendered: function(canvas) {
+
+         canvas.id = "cardcanvas";
+            document.getElementById("target").appendChild(canvas);
+
+          document.getElementById("card").style.display = 'none';
+          downloadCanvas(anchorref, 'cardcanvas', 'my_onepunchman_character_poll_result.png')
+        },
+      allowTaint: true,
+      taintTest: false
+    })
+  }
+
+// src : http://blog.devteaminc.co/posting-a-canvas-image-to-twitter-using-oauth/
+  function dataURItoBlob(dataURI){
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if(dataURI.split(',')[0].indexOf('base64') > 0){
+      byteString = atob(dataURI.split(',')[1])
+    }
+    else {
+      byteString = unescape(datURI.split(',')[1])
+    }
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+    var ia = new Uint8Array(byteString.length)
+    for(var i=0; i <byteString.length; i++)
+    {
+      ia[i] = byteString.charCodeAt(i)
+    }
+    return new Blob([ia],{type:mimeString})
+  }
+
+  function downloadCanvas(link, canvasId, filename) {
+      //link.href = document.getElementById(canvasId).toDataURL()
+      //link.download = filename
+      const img = document.getElementById(canvasId).toDataURL()
+      var file = dataURItoBlob(img)
+      link.onclick = function(){
+      OAuth.popup("twitter").then(function(result) {
+         console.log('in then')
+          var data = new FormData();
+          // Tweet text
+          data.append('status', "I just took an Character Poll of One Punch Man @  vidyuthd.github.io/onepunchman-character-poll/  #onepunchmancharacterpoll");
+          // Binary image
+          data.append('media[]', file, 'onepunchmanresult.png');
+          // Post to Twitter as an update with media
+          return result.post('/1.1/statuses/update_with_media.json', {
+              data: data,
+              cache: false,
+              processData: false,
+              contentType: false
+          });
+      // Success/Error Logging
+      }).done(function(data){
+          console.log('success')
+      }).fail(function(e){
+          console.log('failure, error is ',e)
+      });
+    }
+  }
+
+  convertToCanvas()
+}
+  </script>
 </html>

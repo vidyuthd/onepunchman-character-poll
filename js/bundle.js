@@ -271,7 +271,7 @@ var Results = exports.Results = _react2.default.createClass({
     var lstMember = this.props.lstMember;
     var equal = this.props.equal;
 
-    return _react2.default.createElement('div', null, _react2.default.createElement('h1', null, ' Ranking '), _react2.default.createElement('table', null, _react2.default.createElement('tbody', null, namMember.map(function (element, i) {
+    return _react2.default.createElement('div', null, _react2.default.createElement('div', { id: 'card' }, _react2.default.createElement('h1', null, ' My One Punch Man Character Poll Results '), _react2.default.createElement('table', { style: { bgcolor: '#673AB7' } }, _react2.default.createElement('tbody', null, namMember.map(function (element, i) {
       if (i < namMember.length) {
         if (lstMember[0][i + 1] && equal[lstMember[0][i]] == lstMember[0][i + 1]) {
           sameRank++;
@@ -281,7 +281,10 @@ var Results = exports.Results = _react2.default.createClass({
         }
       }
       return _react2.default.createElement(_Result2.default, { key: i, ranking: ranking, name: namMember[lstMember[0][i]] });
-    }))));
+    })))), _react2.default.createElement('a', { ref: 'hyperlinkref', id: 'download', style: { cursor: 'pointer' } }, 'Post to twitter'));
+  },
+  componentDidMount: function componentDidMount() {
+    window.triggerDownload(this.refs.hyperlinkref);
   }
 });
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import Result from './Result.react'
 
-export const Results = React.createClass({
+export const Results  = React.createClass({
   render(){
     let ranking = 0;
     let sameRank = 1;
@@ -11,8 +11,9 @@ export const Results = React.createClass({
 
     return (
       <div>
-      <h1> Ranking </h1>
-      <table>
+      <div id="card">
+      <h1> My One Punch Man Character Poll Results </h1>
+      <table style={{bgcolor:'#673AB7'}}>
       <tbody>
       { namMember.map((element,i) => {
         if (i<namMember.length) {
@@ -28,6 +29,11 @@ export const Results = React.createClass({
       </tbody>
     	</table>
       </div>
+      <a ref="hyperlinkref" id="download" style={{cursor:'pointer'}}>Post to twitter</a>
+      </div>
     )
+  },
+  componentDidMount(){
+    window.triggerDownload(this.refs.hyperlinkref)
   }
 })
